@@ -49,10 +49,14 @@
   position: relative;
   display: inline-block;
 }
+    .table-responsive{
+        max-height:500px;
+    }
+
 
 #myInput{
     /*display:none;*/
-    opacity: 0;
+    opacity: 1;
     /*visibility:hidden;*/
 }
 
@@ -84,12 +88,12 @@ input[type=submit] {
   top: 100%;
   left: 0;
   right: 0;
-}
+}tion and look at the navigation bar while scrolling! Try to scroll this section
 
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff; 
+.tion and look at the navigation bar while scrolling! Try to scroll this section
+ tion and look at the navigation bar while scrolling! Try to scroll this section
+ tion and look at the navigation bar while scrolling! Try to scroll this section
+ tion and look at the navigation bar while scrolling! Try to scroll this section
   border-bottom: 1px solid #d4d4d4; 
 }
 
@@ -642,124 +646,19 @@ input[type=submit] {
                 <pre>Cash                                                                                               Date: 18-03-2019                                                                                                   Bill No.: A3781</pre>
                 <p align="right" style="font-size: 30px">0.00</p>
                 <p align="center" style="font-size: 35px; background-color: turquoise" ><strong>S A L E S &nbsp; &nbsp;D E T A I L S</strong><br></p>
-                <!--<form autocomplete="off" action="additem.php" method="GET">
-  <div class="autocomplete" style="width:300px;">
-    <input id="myInput" type="text" name="myItem" placeholder="Item">
-    <input type="number" step="0.005" name="quantity" placeholder="QTY" REQUIRED>
-  </div>
-  <input type="submit" value="Add">
-</form>-->
+                <div id="Carts" style="display:'inline;'">
+                    <button value="cart1">Cart 1</button>
+                    <button value="cart2">Cart 2</button>
+                    <button value="cart3">Cart 3</button>
+                    <button value="cart4">Cart 4</button>
+                </div>
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
 
-<!--<script>
-function autocomplete(inp, arr) {
-  /*the autocomplete function takes two arguments,
-  the text field element and an array of possible autocompleted values:*/
-  var currentFocus;
-  /*execute a function when someone writes in the text field:*/
-  inp.addEventListener("input", function(e) {
-      var a, b, i, val = this.value;
-      /*close any already open lists of autocompleted values*/
-      closeAllLists();
-      if (!val) { return false;}
-      currentFocus = -1;
-      /*create a DIV element that will contain the items (values):*/
-      a = document.createElement("DIV");
-      a.setAttribute("id", this.id + "autocomplete-list");
-      a.setAttribute("class", "autocomplete-items");
-      /*append the DIV element as a child of the autocomplete container:*/
-      this.parentNode.appendChild(a);
-      /*for each item in the array...*/
-      for (i = 0; i < arr.length; i++) {
-        /*check if the item starts with the same letters as the text field value:*/
-        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-          /*create a DIV element for each matching element:*/
-          b = document.createElement("DIV");
-          /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += arr[i].substr(val.length);
-          /*insert a input field that will hold the current array item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-          /*execute a function when someone clicks on the item value (DIV element):*/
-          b.addEventListener("click", function(e) {
-              /*insert the value for the autocomplete text field:*/
-              inp.value = this.getElementsByTagName("input")[0].value;
-              /*close the list of autocompleted values,
-              (or any other open lists of autocompleted values:*/
-              closeAllLists();
-          });
-          a.appendChild(b);
-        }
-      }
-  });
-  /*execute a function presses a key on the keyboard:*/
-  inp.addEventListener("keydown", function(e) {
-      var x = document.getElementById(this.id + "autocomplete-list");
-      if (x) x = x.getElementsByTagName("div");
-      if (e.keyCode == 40) {
-        /*If the arrow DOWN key is pressed,
-        increase the currentFocus variable:*/
-        currentFocus++;
-        /*and and make the current item more visible:*/
-        addActive(x);
-      } else if (e.keyCode == 38) { //up
-        /*If the arrow UP key is pressed,
-        decrease the currentFocus variable:*/
-        currentFocus--;
-        /*and and make the current item more visible:*/
-        addActive(x);
-      } else if (e.keyCode == 13) {
-        /*If the ENTER key is pressed, prevent the form from being submitted,*/
-        e.preventDefault();
-        if (currentFocus > -1) {
-          /*and simulate a click on the "active" item:*/
-          if (x) x[currentFocus].click();
-        }
-      }
-  });
-  function addActive(x) {
-    /*a function to classify an item as "active":*/
-    if (!x) return false;
-    /*start by removing the "active" class on all items:*/
-    removeActive(x);
-    if (currentFocus >= x.length) currentFocus = 0;
-    if (currentFocus < 0) currentFocus = (x.length - 1);
-    /*add class "autocomplete-active":*/
-    x[currentFocus].classList.add("autocomplete-active");
-  }
-  function removeActive(x) {
-    /*a function to remove the "active" class from all autocomplete items:*/
-    for (var i = 0; i < x.length; i++) {
-      x[i].classList.remove("autocomplete-active");
-    }
-  }
-  function closeAllLists(elmnt) {
-    /*close all autocomplete lists in the document,
-    except the one passed as an argument:*/
-    var x = document.getElementsByClassName("autocomplete-items");
-    for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
-        x[i].parentNode.removeChild(x[i]);
-      }
-    }
-  }
-  /*execute a function when someone clicks in the document:*/
-  document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
-  });
-}
-
-/*An array containing all the country names in the world:*/
-var countries = ["3 Roses Tea 100gm","3 Roses Tea 250gm","3 Roses Tea 500gm","3 Roses Tea 1000gm","Maggi Noodles","Maggi Atta Noodles", "Amma Sona Raw Rice"];
-
-/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries);
-</script>-->
                 <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="table-responsive">
+                            <div class="table-responsive" style="overflow-y:auto;">
                                 <script>
                                     document.addEventListener("keydown", function(event) {
                                         
@@ -774,78 +673,50 @@ autocomplete(document.getElementById("myInput"), countries);
                                     input = document.getElementById("myInput");
                                     filter = input.value;
                                     getElementById(filter).focus();
-                                    //table = document.getElementById("dataTables-example");
-                                    //tr = table.getElementsByTagName("tr");
-                                    /*for (i = 0; i < tr.length; i++) {
-                                        td = tr[i].getElementsByTagName("td")[1];
-                                        if (td) {
-                                        txtValue = td.textContent || td.innerText;
-                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                            tr[i].style.display = "";
-                                        } else {
-                                            tr[i].style.display = "none";
-                                        }
-                                        }       
-                                    }*/
                                     }
 
                                     </script>
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <!-- <div class="table-responsive" style="max-height:500px"> -->
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th>Sl</th>
                                             <th>Product Name</th>
                                             <th>Stock</th>
+                                            <th>Quantity</th>
                                             <th>MRP</th>
                                             <th>Rate</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    
-                                        <?php
+                             
+                                         <?php
                                             if($var>0)
                                             {
-                                                $sl=1;
+                                               $sl=1;
                                                while($row=$result->fetch_assoc())
                                                 {
                                                     echo "<tr>
-                                                    <div id=".$row['Product_name']."><td>".$sl."</td></div>
+                                                    <td>".$sl."</td>
                                                     <td>".$row['Product_name']."</td>
                                                     <td>".$row['Stock']."</td>
+                                                    <td>"."<input type=\"number\"></input>
                                                     <td>".$row['MRP']."</td>
                                                     <td>".$row['Rate']."</td>
-                                                    </tr>"."<br>";
+                                                    </tr>";
                                                     $sl+=1;
                                                 }
                                             }
                                         ?>
                                         </tbody>
                                     </table>
+                    <!-- </div> -->
                             </div>
                            
                         </div>
                     </div>
                 </div>
             </div>
-               <!--- <pre style="font-size: 18px"><strong>Sl                       Product                              Quantity                         Rate                         Net-Rate                           Amount</strong></pre>
-                <p style="font-size: 20px"><pre> 1)                       3 ROSES TEA 250G 35.0  81                                                                                34.00                                        34.00                                           0.00</pre> </p>
-                <p style="font-size: 20px"><pre> 2)                       AMMASONARAWRICE 62.0  558                                                                                56.00                                        56.00                                           0.00</pre> </p>-->
-                <!--<div class="vl1"></div>-->
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br> 
                 <hr/>
                 <p style="font-size: 20px; font-family: monospace;">Total items: 0 &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;Amt. paid: 150.00</p>
                 <p style="font-size: 20px; font-family: monospace;">0.00  &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp;  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;Returned: 10.00  &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;TAX</p>
@@ -871,6 +742,7 @@ autocomplete(document.getElementById("myInput"), countries);
      <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
+    
 </body>
     <!-- END BODY-->
     
